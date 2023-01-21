@@ -1,6 +1,8 @@
 #!/bin/bash
 
 export DEBUG=True
+# CHANGE THIS IN PRODUCTION. This is just set here to get a local
+# environment set up more quickly.
 export SECRET_KEY="2HY>fXi!dQ&(9Vf.XghCa;L6G=Ul4r-Bwqh>ae0RG3vIh1ZJ%T"
 export QLDB_ENABLED="FALSE"  # Toggles QLDB on or off.
 export qldb_name="fEMR-OnChain-Test"
