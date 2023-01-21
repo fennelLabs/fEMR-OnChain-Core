@@ -54,13 +54,6 @@ INSTALLED_APPS = [
     "silk",
 ]
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
-        "LOCATION": "cache:11211",
-    }
-}
-
 TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
 
 NOSE_ARGS = [
@@ -264,12 +257,12 @@ SERVER_EMAIL = os.environ.get("SERVER_EMAIL")
 
 SESSIONS_ENGINE = "django.contrib.sessions.backends.cache"
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
-        "LOCATION": "cache:11211",
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
+#         "LOCATION": "cache:11211",
+#     }
+# }
 
 AXES_RESET_ON_SUCCESS = True
 AXES_ENABLE_ADMIN_SITE = True

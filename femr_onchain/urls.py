@@ -1,11 +1,10 @@
 """
 Main URL configurations for fEMR-OnChain-Core. This redirects to the other apps in this project.
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic.base import RedirectView
 
 from main.auth_views import change_password, required_change_password
@@ -20,8 +19,8 @@ urlpatterns = [
     path("app_mr/", include("app_mr.urls", namespace="app_mr")),
     path("messages/", include("clinic_messages.urls", namespace="clinic_messages")),
     path("silk/", include("silk.urls", namespace="silk")),
-    url(r"session_security/", include("session_security.urls")),
-    url(
+    re_path(r"session_security/", include("session_security.urls")),
+    re_path(
         r"^password_reset/$",
         auth_views.PasswordResetView.as_view(
             template_name="auth/password_reset.html",
@@ -29,7 +28,7 @@ urlpatterns = [
         ),
         name="password_reset",
     ),
-    url(
+    re_path(
         r"^password_reset/done/$",
         auth_views.PasswordResetDoneView.as_view(
             template_name="auth/password_reset_done.html"
@@ -43,7 +42,7 @@ urlpatterns = [
         ),
         name="password_reset_confirm",
     ),
-    url(
+    re_path(
         r"^reset/done/$",
         auth_views.PasswordResetCompleteView.as_view(
             template_name="auth/password_reset_complete.html"

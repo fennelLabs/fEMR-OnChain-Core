@@ -1,8 +1,8 @@
 """
 URL configurations for the fEMR OnChain module.
 """
-from django.conf.urls import url, include
-from django.urls import path
+from django.conf.urls import include
+from django.urls import path, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
@@ -206,17 +206,17 @@ router.register(r"UnitSetting", UnitsSettingViewSet)
 router.register(r"MessageOfTheDayViewSet", MessageOfTheDayViewSet)
 
 urlpatterns = [
-    url(r"^$", index, name="index"),
-    url(r"^index/$", index, name="index"),
-    url(r"^home/$", home, name="home"),
-    url(r"^faqs/$", faqs, name="faqs"),
-    url(r"^logout/$", logout_view, name="logout_view"),
-    url(r"^login_view/$", login_view, name="login_view"),
-    url(r"^not_logged_in/$", not_logged_in, name="not_logged_in"),
-    url(r"^permission_denied/$", permission_denied, name="permission_denied"),
-    url(r"^all_locked/$", all_locked, name="all_locked"),
-    url(r"^healthcheck/$", healthcheck, name="healthcheck"),
-    url(r"^patient_form_view/$", patient_form_view, name="patient_form_view"),
+    re_path(r"^$", index, name="index"),
+    re_path(r"^index/$", index, name="index"),
+    re_path(r"^home/$", home, name="home"),
+    re_path(r"^faqs/$", faqs, name="faqs"),
+    re_path(r"^logout/$", logout_view, name="logout_view"),
+    re_path(r"^login_view/$", login_view, name="login_view"),
+    re_path(r"^not_logged_in/$", not_logged_in, name="not_logged_in"),
+    re_path(r"^permission_denied/$", permission_denied, name="permission_denied"),
+    re_path(r"^all_locked/$", all_locked, name="all_locked"),
+    re_path(r"^healthcheck/$", healthcheck, name="healthcheck"),
+    re_path(r"^patient_form_view/$", patient_form_view, name="patient_form_view"),
 
     path(r"request_stress_test_view/", request_stress_test_view, name="request_stress_test_view"),
     path(r"begin_stress_test_view/", begin_stress_test_view, name="begin_stress_test_view"),
@@ -311,7 +311,7 @@ urlpatterns = [
     path(
         r"referral_form/<int:patient_id>", referral_form_view, name="referral_form_view"
     ),
-    url(r"^patient_list_view/$", patient_list_view, name="patient_list_view"),
+    re_path(r"^patient_list_view/$", patient_list_view, name="patient_list_view"),
     path(
         r"chief_complaint_list_view/<int:patient_id>/<int:encounter_id>",
         chief_complaint_list_view,
@@ -327,26 +327,26 @@ urlpatterns = [
         patient_csv_export_view,
         name="patient_csv_export_view",
     ),
-    url(
+    re_path(
         r"^search_patient_list_view/$",
         search_patient_list_view,
         name="search_patient_list_view",
     ),
-    url(
+    re_path(
         r"^filter_patient_list_view/$",
         filter_patient_list_view,
         name="filter_patient_list_view",
     ),
-    url(r"^superuser_home/$", admin_home, name="superuser_home"),
-    url(r"^set_timezone/$", set_timezone, name="set_timezone"),
-    url(
+    re_path(r"^superuser_home/$", admin_home, name="superuser_home"),
+    re_path(r"^set_timezone/$", set_timezone, name="set_timezone"),
+    re_path(
         r"^message_of_the_day_view/$",
         message_of_the_day_view,
         name="message_of_the_day_view",
     ),
     # User Management
-    url(r"^list_users_view/$", list_users_view, name="list_users_view"),
-    url(r"^create_user_view/$", create_user_view, name="create_user_view"),
+    re_path(r"^list_users_view/$", list_users_view, name="list_users_view"),
+    re_path(r"^create_user_view/$", create_user_view, name="create_user_view"),
     path(r"update_user_view/<int:user_id>", update_user_view, name="update_user_view"),
     path(
         r"update_user_password_view/<int:user_id>",
@@ -355,8 +355,8 @@ urlpatterns = [
     ),
     path(r"lock_users_view/<int:user_id>", lock_user_view, name="lock_user_view"),
     path(r"unlock_users_view/<int:user_id>", unlock_user_view, name="unlock_user_view"),
-    url(r"^filter_users_view/$", filter_users_view, name="filter_user_view"),
-    url(r"^search_users_view/$", search_users_view, name="search_user_view"),
+    re_path(r"^filter_users_view/$", filter_users_view, name="filter_user_view"),
+    re_path(r"^search_users_view/$", search_users_view, name="search_user_view"),
     path(
         r"lock_instance_view/<int:instance_id>",
         lock_instance_view,
@@ -380,46 +380,46 @@ urlpatterns = [
     path(r"reset_lockouts", reset_lockouts, name="reset_lockouts"),
     path(r"reset_lockouts/<str:username>", reset_lockouts, name="reset_lockouts"),
     # Audit Log Management
-    url(r"^get_audit_logs_view/$", get_audit_logs_view, name="get_audit_logs_view"),
-    url(
+    re_path(r"^get_audit_logs_view/$", get_audit_logs_view, name="get_audit_logs_view"),
+    re_path(
         r"^export_audit_logs_view/$",
         export_audit_logs_view,
         name="export_audit_logs_view",
     ),
-    url(
+    re_path(
         r"^filter_audit_logs_view/$",
         filter_audit_logs_view,
         name="filter_audit_logs_view",
     ),
-    url(
+    re_path(
         r"^search_audit_logs_view/$",
         search_audit_logs_view,
         name="search_audit_logs_view",
     ),
     # Database Log Management
-    url(
+    re_path(
         r"^get_database_logs_view/$",
         get_database_logs_view,
         name="get_database_logs_view",
     ),
-    url(
+    re_path(
         r"^export_database_logs_view/$",
         export_database_logs_view,
         name="export_database_logs_view",
     ),
-    url(
+    re_path(
         r"^search_database_logs_view/$",
         search_database_logs_view,
         name="search_database_logs_view",
     ),
-    url(
+    re_path(
         r"^filter_database_logs_view/$",
         filter_database_logs_view,
         name="filter_database_logs_view",
     ),
     # Formulary Management
-    url(r"^formulary_home_view/$", formulary_home_view, name="formulary_home_view"),
-    url(r"^add_supply_view/$", add_supply_view, name="add_supply_view"),
+    re_path(r"^formulary_home_view/$", formulary_home_view, name="formulary_home_view"),
+    re_path(r"^add_supply_view/$", add_supply_view, name="add_supply_view"),
     path(r"edit_supply/<int:entry_id>", edit_supply_view, name="edit_supply_view"),
     path(
         r"edit_add_supply_view/<int:entry_id>",
@@ -431,32 +431,32 @@ urlpatterns = [
         edit_sub_supply_view,
         name="edit_sub_supply_view",
     ),
-    url(r"^csv_handler_view/$", csv_handler_view, name="csv_handler_view"),
-    url(r"^csv_import_view/$", csv_import_view, name="csv_import_view"),
-    url(r"^csv_export_view/$", csv_export_view, name="csv_export_view"),
-    url(r"^csv_export_list/$", csv_export_list, name="csv_export_list"),
+    re_path(r"^csv_handler_view/$", csv_handler_view, name="csv_handler_view"),
+    re_path(r"^csv_import_view/$", csv_import_view, name="csv_import_view"),
+    re_path(r"^csv_export_view/$", csv_export_view, name="csv_export_view"),
+    re_path(r"^csv_export_list/$", csv_export_list, name="csv_export_list"),
     path(
         r"fetch_csv_export/<int:export_id>", fetch_csv_export, name="fetch_csv_export"
     ),
     # fEMR Environment Management
-    url(r"^femr_admin_home/$", femr_admin_home, name="femr_admin_home"),
-    url(r"^change_campaign/$", change_campaign, name="change_campaign"),
-    url(r"^list_campaign/$", list_campaign_view, name="list_campaign"),
+    re_path(r"^femr_admin_home/$", femr_admin_home, name="femr_admin_home"),
+    re_path(r"^change_campaign/$", change_campaign, name="change_campaign"),
+    re_path(r"^list_campaign/$", list_campaign_view, name="list_campaign"),
     path(r"edit_campaign/<int:campaign_id>", edit_campaign_view, name="edit_campaign"),
-    url(r"^new_campaign/$", new_campaign_view, name="new_campaign"),
-    url(r"^list_instance/$", list_instance_view, name="list_instance"),
+    re_path(r"^new_campaign/$", new_campaign_view, name="new_campaign"),
+    re_path(r"^list_instance/$", list_instance_view, name="list_instance"),
     path(r"edit_instance/<int:instance_id>", edit_instance_view, name="edit_instance"),
-    url(r"^new_instance/$", new_instance_view, name="new_instance"),
+    re_path(r"^new_instance/$", new_instance_view, name="new_instance"),
     path(r"edit_contact/<int:contact_id>", edit_contact_view, name="edit_contact"),
     path(r"view_contact/<int:contact_id>", view_contact_view, name="view_contact"),
-    url(r"^new_contact/$", new_contact_view, name="new_contact"),
+    re_path(r"^new_contact/$", new_contact_view, name="new_contact"),
     path(
         r"patient_export/<int:patient_id>", patient_export_view, name="patient_export"
     ),
-    url(r"^new_race/$", new_race_view, name="new_race"),
-    url(r"^new_ethnicity/$", new_ethnicity_view, name="new_ethnicity"),
-    url(r"^list_organization/$", list_organization_view, name="list_organization"),
-    url(r"^new_organization/$", new_organization_view, name="new_organization"),
+    re_path(r"^new_race/$", new_race_view, name="new_race"),
+    re_path(r"^new_ethnicity/$", new_ethnicity_view, name="new_ethnicity"),
+    re_path(r"^list_organization/$", list_organization_view, name="list_organization"),
+    re_path(r"^new_organization/$", new_organization_view, name="new_organization"),
     path(
         r"edit_organization/<int:organization_id>",
         edit_organization_view,
@@ -495,87 +495,87 @@ urlpatterns = [
     ),
     path("api/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    url(
+    re_path(
         r"^get_auth_token/$",
         rest_framework_views.obtain_auth_token,
         name="get_auth_token",
     ),
-    url(
+    re_path(
         r"^swagger(?P<format>\.json|\.yaml)$",
         schema_view.without_ui(cache_timeout=0),
         name="schema-json",
     ),
-    url(
+    re_path(
         r"^swagger/$",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
-    url(
+    re_path(
         r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
-    url(r"^forgot_username", forgot_username, name="forgot_username"),
-    url(r"^help_messages_off", help_messages_off, name="help_messages_off"),
-    url(
+    re_path(r"^forgot_username", forgot_username, name="forgot_username"),
+    re_path(r"^help_messages_off", help_messages_off, name="help_messages_off"),
+    re_path(
         r"^femr_admin_dashboard_view",
         femr_admin_dashboard_view,
         name="femr_admin_dashboard_view",
     ),
-    url(
+    re_path(
         r"^diagnosis-autocomplete/$",
         DiagnosisAutocomplete.as_view(create_field="text"),
         name="diagnosis-autocomplete",
     ),
-    url(
+    re_path(
         r"^medication-autocomplete/$",
         MedicationAutocomplete.as_view(create_field="text"),
         name="medication-autocomplete",
     ),
-    url(
+    re_path(
         r"^inventory-entry-autocomplete/$",
         InventoryEntryAutocomplete.as_view(),
         name="inventory-entry-autocomplete",
     ),
-    url(
+    re_path(
         r"^inventory-form-autocomplete/$",
         InventoryFormAutocomplete.as_view(create_field="name"),
         name="inventory-form-autocomplete",
     ),
-    url(
+    re_path(
         r"^inventory-category-autocomplete/$",
         InventoryCategoryAutocomplete.as_view(create_field="name"),
         name="inventory-category-autocomplete",
     ),
-    url(
+    re_path(
         r"^manufacturer-autocomplete/$",
         ManufacturerAutocomplete.as_view(create_field="name"),
         name="manufacturer-autocomplete",
     ),
-    url(
+    re_path(
         r"^test-autocomplete/$",
         TestAutocomplete.as_view(create_field="text"),
         name="test-autocomplete",
     ),
-    url(
+    re_path(
         r"^chief-complaint-autocomplete/$",
         ChiefComplaintAutocomplete.as_view(create_field="text"),
         name="chief-complaint-autocomplete",
     ),
-    url(
+    re_path(
         r"^administration-schedule-autocomplete/$",
         AdministrationScheduleAutocomplete.as_view(create_field="text"),
         name="administration-schedule-autocomplete",
     ),
-    url(
+    re_path(
         r"^race-autocomplete/$",
         RaceAutocomplete.as_view(create_field="name"),
         name="race-autocomplete",
     ),
-    url(
+    re_path(
         r"^ethnicity-autocomplete/$",
         EthnicityAutocomplete.as_view(create_field="name"),
         name="ethnicity-autocomplete",
     ),
-    url(
+    re_path(
         r"^state-autocomplete/$",
         StateAutocomplete.as_view(create_field="name"),
         name="state-autocomplete",
