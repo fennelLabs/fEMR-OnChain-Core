@@ -57,6 +57,7 @@ class Command(BaseCommand):
             Group.objects.get(name="Operation Admin").user_set.add(superuser)
             Group.objects.get(name="Campaign Manager").user_set.add(superuser)
             Group.objects.get(name="Developer").user_set.add(superuser)
+            Group.objects.get(name="Patient").user_set.add(superuser)
             instance.main_contact = superuser
             instance.save()
         else:

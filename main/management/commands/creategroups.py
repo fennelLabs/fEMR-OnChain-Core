@@ -12,6 +12,7 @@ GROUPS = [
     "Operation Admin",
     "Campaign Manager",
     "Developer",
+    "Patient",
 ]
 
 
