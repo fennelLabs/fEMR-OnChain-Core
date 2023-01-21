@@ -1,4 +1,4 @@
-amazon.ion==0.9.1
+amazon.ion==0.9.3
 amqp==5.1.1
 asgiref==3.4.1
 astroid==2.11.3
